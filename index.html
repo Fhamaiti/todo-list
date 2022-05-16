@@ -4,124 +4,377 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+
+    <title>Shopping Cart</title>
 </head>
 <style>
     *{
-        margin:0;
-        padding:0;
+        padding: 0;
+        margin: 0;
         box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
     }
-    .navbar {
-        
-        width: 100%;
-        height: 80px;
-        background-color: red;
-        justify-content: center;
-        border-bottom: 2px solid gray;
-        flex-direction: row;
-        text-align: center;
-        
-        
-    }
-    form {
-        
-        justify-content: center;
-        flex-direction: row;
-        align-items: center;
-        text-align: center;
-        
-
-    }
-    #container {
-    text-align: center;
-    list-style: none;
-    }
-    ul li {
-        width: 100%;
-        background: beige;
-        height:40px;
-        line-height: 40px;
-        padding: 0 5px;
-        margin:5px 0;
-        
-    }
-    ul {
-        width: 100%;
-        text-align: left;
-    }
-
-    span {
-        background-color: brown;
-        justify-content:end;
-        margin-left: 100px;
-        cursor: pointer;
-    }
-    #add {
-        border: none;
-        background: linear-gradient(lightgray,gray);
-        margin: 5px;
-        cursor: pointer;
-    }
-    #add :hover {
-        background: white;
-        
-    }
-    .list-item label {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .list-item label input {
-        margin-top: 6px;
-        margin-right: 12px;
+    header {
+        height: 130px;
+        position: relative;
+        background-color:whitesmoke;
     }
     
+    navbar {
+        position: absolute;
+        top:0;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 50px 60px 0 60px;
+        justify-items: center;
+    }
+    navbar li {
+        list-style: none;
+        display: inline-block;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    ul {
+        margin-right: 250px;
+    }
+    navbar li span {
+        padding-left: 5px;
+    }
+    li a {
+        padding: 5px;
+        background-color: grey;
+        text-decoration: none;
+    }
+    .b {
+        color: black;
+        display: flex;
+        padding: 15px;
+        align-items: center;
+        margin: 10px;
+        font-weight: 800;
+    }
+    .b:hover {
+        cursor: pointer;
+        background-color:gray ;
+    }
+    .title {
+        font-weight: 600;
+        text-align:left;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        padding-top: 20px;
+    }
+    .section-container {
+        margin-top: 2rem;
+        margin-left: 2rem;
+
+    }
+
+    .products {
+        width:70%;
+        display: grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,auto));
+        gap: 1.5 rem;
+        border: 5px;
+        background-size: cover;
+        align-items: center;
+        border-color: black;
+        grid-gap: 30px;
+    
+    }
+    .product {
+        border: 10px;
+        background-size: cover;
+        border:solid;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+    }
+    .product:hover{
+        padding:10px;
+        border:1px solid var;
+        transition:0.2s;
+        cursor: pointer;
+    }
+    .product.img {
+        width: 100%;
+        height: auto;
+        background-size: cover;
+    }
+    .product-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    .price {
+        font-weight: 500;
+    }
+
+    .add {
+        width: 100%;
+        bottom:0;
+        right:0;
+        background: gray;
+        color: black;
+        padding:10px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    .panier {
+        position:absolute;
+        width: 20%;
+        min-height: 100vh;
+        background-color: whitesmoke;
+        top:0;
+        right:0;
+        padding: 10px;
+        font-size: 25px;
+        border:solid grey;
+    }
+    .titre-panier {
+        font-weight: 600;
+        text-align:left;
+        padding-left: 20px;
+        padding-bottom: 30px;
+        padding-top: 20px;
+    }
+    .titre-panier {
+        text-align: center;
+        font-weight: 600;
+        margin-top: 2rem;
+    }
+    .box {
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        gap:1rem;
+        margin-top: 1rem;
+    }
+    .product-img1 {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        padding: 5px;
+
+    }
+    .details {
+        display: grid;
+        row-gap: 0.5rem;
+    }
+    .nom-produit {
+        font-size: 1.2rem;
+        text-transform:uppercase;
+    }
+    .prix-produit {
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+    .quantity {
+        border: 1px solid var gray;
+        outline-color: var black;
+        width: 4rem;
+    }
+    .remove {
+        font-size: 24px;
+        color: grey;
+        cursor: pointer;
+        position: absolute;
+        right: 0.8rem;
+        font-weight: 800;
+    }
+    .total {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 1.5rem;
+        border-top: 1px solid black;
+    }
+    .total-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+    .total-prix {
+        margin-left: 0.5rem;
+        font-size: 1rem;
+    }
+    .btn {
+        display: flex;
+        margin: 1.5rem auto 0 auto;
+        padding: 12px 20px;
+        border:none;
+        background: darkgray;
+        color: white;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    .btn:hover{
+        background: black;
+    }
 </style>
 
 <body>
-    <div class="navbar">
-        <h1> My To Do List </h1>
-        <div>
-            <input id="input" type="text" name="name" class="form-control" placeholder="Title ..." >
-            <button id="add"> Add </button>
-        </div>
-    </div>
-    <ul id="container">
-        <li class="list-item">
-            <label for="1">
-                <input type="checkbox" id="1">
-                <p>hello</p>
+    <header>
+        <div class="overlay"> </div>
+        <navbar>
+            <h2>Shopping En Ligne</h2>
+            <ul>
+                <li><a href="index.html"> Compte </a></li>
+                <li><a href="#"> Nous Contacter </a></li>
+            </ul>
+        </navbar>
+    </header>
+        
+        <div class="section-container">
+            <h2 class="title">Nos Produits</h2>
 
-            </label>
+            <div class="products"> 
+                <div class="product" id="item1">
+                    <h3 class="product-title"> Montre Connectée </h3>
+                    <span class="price"> 8000 DZD</span>
+                    <img src="imgmontre.png" alt="" class="product-img">
+                    <button class="add"> Ajouter au panier </button>
+                </div>
+                  
+                <div class="product" id="item2">
+                    <h3 class="product-title"> Casque Audio Sans Fil </h3>
+                    <span class="price"> 12000 DZD</span>
+                    <img src="casque sf.jpg" alt="" class="product-img">
+                    <button class="add"> Ajouter au panier </button>
+                </div>
 
-            
-
-        </li>
-    </ul>
+                <div class="product" id="item3">
+                    <h3 class="product-title"> Chargeur Sans Fil De Voiture </h3>
+                    <span class="price"> 5000 DZD</span>
+                    <img src="chargeursf.jpg" alt="" class="product-img">
+                    <button class="add"> Ajouter au panier </button>
+                </div>
+                <div class="product" id="item4">
+                    <h3 class="product-title"> Ecouteurs Sans Fil </h3>
+                    <span class="price"> 8000 DZD</span>
+                    <img src="ecouteur sans fil.png" alt="" class="product-img">
+                    <button class="add"> Ajouter au panier </button>
+                </div>
+                <div class="product" id="item5">
+                    <h3 class="product-title"> Batterie Externe </h3>
+                    <span class="price"> 4000 DZD</span>
+                    <img src="power bank.jpg" alt="" class="product-img">
+                    <button class="add"> Ajouter au panier </button>
+                </div>
+                <div class="product" id="item6">
+                    <h3 class="product-title"> Support Smartphone De Voiture </h3>
+                    <span class="price"> 1800 DZD</span>
+                    <img src="support-telephone.jpg" alt="" class="product-img">
+                    <button class="add"> Ajouter au panier </button>
+                </div>
+            </div>
+            <div class="panier"> 
+                <h3 class="titre-panier"> Votre Panier </h3>
+                <div class="cart-content">
+                
+                    </div>
+                    <div class="total"> 
+                        <div class="total-title"> Totale </div>
+                        <div class="total-prix"> 0 DZD </div>
+                    </div>
+                    <button type="button" class="btn"> Acheter </button>
+                </div>
+                
+        </div>     
 </body>
 
 <script>
-    var btn= document.getElementById("add")
-    btn.onclick= function(){
-        var ul= document.getElementById("container")    
-        var contenu= document.getElementById("input").value
-        var liste= document.createElement("li")
-        liste.innerText=contenu
-        ul.appendChild(liste);
-        input.value="";
-        var spn=document.createElement("span")
-        spn.innerText="x"
-        liste.appendChild(spn);
-        spn.addEventListener("click", function(e) {
-            liste.remove();
-        })
-        liste.addEventListener('click' , function(e) {
-            liste.style.textDecoration = "line-through"
-        })
-        
+
+    var removeCartButtons = document.getElementsByClassName('remove')
+    console.log(removeCartButtons)
+    for ( var i=0; i<removeCartButtons.length; i++) {
+        var button = removeCartButtons[i] 
+        button.addEventListener('click',removeCarItem)
+    }
+    function removeCarItem(event) {
+        buttonClicked = event.target
+        buttonClicked.parentElement.remove();
+        updatetotal();
+    }
+    
+     
+    var quantityInputs = document.getElementsByClassName("quantity")
+     for ( var i=0; i<quantityInputs.length; i++) {
+          var input = quantityInputs[i] 
+          input.addEventListener('change',quantityChanged);
+        }
+     function quantityChanged(event) {
+        var input = event.target
+        if ( isNaN(input.value) || input.value <= 0){
+            input.value = 1;
+        }
+         updatetotal();
     }
 
-</script>
+    document.getElementsByClassName ('btn')[0].addEventListener('click',buyButtonClicked);
+    function buyButtonClicked() {
+        alert('Votre Commande est ajoutée')
+    }
+    
+    var addCart = document.getElementsByClassName("add")
+        for ( var i=0; i<addCart.length; i++) {
+            var button = addCart[i] 
+            button.addEventListener('click',addCartClicked)
+        }
 
+    function addCartClicked(event) {
+        var button = event.target
+        var shopProducts = button.parentElement
+        var title = shopProducts.getElementsByClassName('product-title')[0].innerText;
+        var price = shopProducts.getElementsByClassName('price')[0].innerText;
+        var productImg = shopProducts.getElementsByClassName('product-img')[0].src;
+        addProductToCart(title,price,productImg);
+        updatetotal();
+    }
+    function addProductToCart(title,price,productImg) {
+        var cartShopBox = document.createElement('div')
+        cartShopBox.classList.add('box')
+        var cartItems = document.getElementsByClassName('cart-content')[0]
+        var cartItemsNames = cartItems.getElementsByClassName('nom-produit')
+        
+        var cartBoxContent = ` 
+                        <img src="${productImg}" alt="" class="product-img1">
+                        <div class="details"> 
+                            <h4 class="nom-produit"> ${title} </h4>
+                            <div class="prix-produit"> ${price}</div>
+                            <input type="number" value="1" class="quantity">
+                            </div>
+                            <ion-icon name="trash" class="remove"></ion-icon>`;
+    
+
+    cartShopBox.innerHTML = cartBoxContent;   
+    cartItems.append(cartShopBox)
+    cartShopBox.getElementsByClassName('remove')[0].addEventListener("click",removeCarItem)
+    cartShopBox.getElementsByClassName('quantity')[0].addEventListener("change",quantityChanged);
+    }
+    
+    function updatetotal(){
+        var cartContent = document.getElementsByClassName('cart-content')[0];
+        var cartBoxes = cartContent.getElementsByClassName('box');
+        var total = 0;
+        for ( var i=0; i < cartBoxes.length; i++) {
+            var cartBox = cartBoxes[i]
+            var priceElement = cartBox.getElementsByClassName('prix-produit')[0]
+            var quantityElement = cartBox.getElementsByClassName ('quantity')[0]
+            var price = parseFloat(priceElement.innerText);
+            var quantity = quantityElement.value;
+            total = total+(price * quantity);
+  
+            document.getElementsByClassName('total-prix')[0].innerText = total + "DZD";
+        }
+    }
+    </script>
+    
 </html>
