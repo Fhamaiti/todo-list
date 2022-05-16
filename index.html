@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    .navbar {
+        
+        width: 100%;
+        height: 80px;
+        background-color: red;
+        justify-content: center;
+        border-bottom: 2px solid gray;
+        flex-direction: row;
+        text-align: center;
+        
+        
+    }
+    form {
+        
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        
+
+    }
+    #container {
+    text-align: center;
+    list-style: none;
+    }
+    ul li {
+        width: 100%;
+        background: beige;
+        height:40px;
+        line-height: 40px;
+        padding: 0 5px;
+        margin:5px 0;
+        
+    }
+    ul {
+        width: 100%;
+        text-align: left;
+    }
+
+    span {
+        background-color: brown;
+        justify-content:end;
+        margin-left: 100px;
+        cursor: pointer;
+    }
+    #add {
+        border: none;
+        background: linear-gradient(lightgray,gray);
+        margin: 5px;
+        cursor: pointer;
+    }
+    #add :hover {
+        background: white;
+        
+    }
+    .list-item label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .list-item label input {
+        margin-top: 6px;
+        margin-right: 12px;
+    }
+    
+</style>
+
+<body>
+    <div class="navbar">
+        <h1> My To Do List </h1>
+        <div>
+            <input id="input" type="text" name="name" class="form-control" placeholder="Title ..." >
+            <button id="add"> Add </button>
+        </div>
+    </div>
+    <ul id="container">
+        <li class="list-item">
+            <label for="1">
+                <input type="checkbox" id="1">
+                <p>hello</p>
+
+            </label>
+
+            
+
+        </li>
+    </ul>
+</body>
+
+<script>
+    var btn= document.getElementById("add")
+    btn.onclick= function(){
+        var ul= document.getElementById("container")    
+        var contenu= document.getElementById("input").value
+        var liste= document.createElement("li")
+        liste.innerText=contenu
+        ul.appendChild(liste);
+        input.value="";
+        var spn=document.createElement("span")
+        spn.innerText="x"
+        liste.appendChild(spn);
+        spn.addEventListener("click", function(e) {
+            liste.remove();
+        })
+        liste.addEventListener('click' , function(e) {
+            liste.style.textDecoration = "line-through"
+        })
+        
+    }
+
+</script>
+
+</html>
